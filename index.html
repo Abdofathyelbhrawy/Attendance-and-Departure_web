@@ -14,7 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/Attendance-and-Departure_web/">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -31,14 +31,54 @@
 
   <title>flutter_application_1</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e0e0e0;
+      border-top: 5px solid #2196f3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      color: #333;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <script>
-      window.flutterConfiguration = {
-        renderer: "html"
-      };
-    </script>
-    
-    <script src="flutter_bootstrap.js" async></script>
-  </body>
+  <div class="loading-container" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">جاري تحميل التطبيق...</div>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function() {
+      var loadingElement = document.getElementById('loading');
+      if (loadingElement) {
+        loadingElement.remove();
+      }
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
 </html>
